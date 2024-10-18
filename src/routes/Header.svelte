@@ -5,7 +5,7 @@
 	import Moon from 'lucide-svelte/icons/moon';
 </script>
 
-<header class="sticky top-0 w-full py-6">
+<header class="sticky top-0 w-full py-6 bg-white dark:bg-slate-900 shadow-sm dark:shadow-slate-800">
 	<div class="max-w-3xl mx-auto flex flex-col items-center justify-center">
 		<a href="/" class="text-4xl font-bold">HotPlato Blog</a>
 		<Button on:click={toggleMode} variant="ghost" size="icon">

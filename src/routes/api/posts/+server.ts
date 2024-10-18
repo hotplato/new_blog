@@ -6,10 +6,10 @@ import { json } from '@sveltejs/kit'
 async function getPosts() {
 	let posts: Post[] = []
 
-	const paths = import.meta.glob('/src/posts/*.md', { eager: true })
+	const files = import.meta.glob('/src/posts/*.md', { eager: true })
 
-	for (const path in paths) {
-		const file = paths[path]
+	for (const path in files) {
+		const file = files[path]
 		const slug = path.split('/').at(-1)?.replace('.md', '')
 
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
@@ -20,7 +20,7 @@ async function getPosts() {
 	}
 
 	posts = posts.sort((first, second) =>
-    new Date(second.date).getTime() - new Date(first.date).getTime()
+		new Date(second.date).getTime() - new Date(first.date).getTime()
 	)
 
 	return posts
