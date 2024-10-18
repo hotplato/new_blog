@@ -1,5 +1,5 @@
 <script lang="ts">
-
+	import { formatDate } from '$lib/utils';
 	export let data
 </script>
 
@@ -10,15 +10,15 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-<article>
+<article class="max-w-3xl mx-auto text-slate-700 dark:text-slate-300 px-4 antialiased">
   <!-- Title -->
-	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<p>发布于 {new Date(data.meta.date).toLocaleDateString()}</p>
+	<hgroup class="mt-12 mb-4">
+		<h1 class="text-3xl">{data.meta.title}</h1>
+		<p class="text-sm text-gray-500 mt-4">发布于 {formatDate(data.meta.date)}</p>
 	</hgroup>
 
   <!-- Tags -->
-	<div class="tags">
+	<div class="flex gap-2 mb-4">
 		{#each data.meta.categories as category}
 			<span class="surface-4">&num;{category}</span>
 		{/each}
@@ -30,29 +30,27 @@
 	</div>
 </article>
 
-<style>
-	article {
-		max-inline-size: var(--size-content-3);
-		margin-inline: auto;
+<style >
+	.prose {
+		@apply pb-8;
 	}
-
-	h1 {
-		text-transform: capitalize;
+	:global(.prose h2),
+	:global(.prose h3),
+	:global(.prose h4),
+	:global(.prose h5),
+	:global(.prose h6) {
+		@apply mb-4;
 	}
-
-	h1 + p {
-		margin-top: var(--size-2);
-		color: var(--text-2);
+	:global(.prose p) {
+		@apply mb-4;
 	}
-
-	.tags {
-		display: flex;
-		gap: var(--size-3);
-		margin-top: var(--size-7);
+	:global(.prose ol li) {
+		@apply mb-2;
 	}
-
-	.tags > * {
-		padding: var(--size-2) var(--size-3);
-		border-radius: var(--radius-round);
+	:global(.prose hr) {
+		@apply my-2;
+	}
+	:global(.shiki) {
+		@apply rounded-sm p-2;
 	}
 </style>

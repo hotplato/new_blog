@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import {mdsvex} from 'mdsvex';
+import { mdsvex, escapeSvelte } from 'mdsvex';
+import { getSingletonHighlighter } from 'shiki'
+
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,6 +11,17 @@ const config = {
 	extensions: ['.svelte', '.md'],
 	preprocess: [vitePreprocess(), mdsvex({
 		extensions: ['.md'],
+		highlight: {
+			highlighter: async (code, lang) => {
+				const highlighter = await getSingletonHighlighter({
+					themes: ['poimandres'],
+					langs: ['typescript', 'javascript', 'json', 'markdown', 'svelte'],
+				});
+				await highlighter.loadLanguage(lang)
+				const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }))
+				return `{@html \`${html}\` }`
+			}
+		},
 	})],
 
 	kit: {

@@ -1,51 +1,25 @@
-<script>
+<script lang="ts">
 	export let data;
+	import { formatDate } from '$lib/utils';
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>HotPlato Blog</title>
+	<meta name="description" content="my blog" />
 </svelte:head>
 
 <!-- Posts -->
-<section>
-	<ul class="posts">
+<section class="max-w-3xl mx-auto">
+	<ul class="antialiased">
 		{#each data.posts as post}
-			<li class="post">
-				<a href={post.slug} class="title">{post.title}</a>
-				<p class="date">{new Date(post.date).toLocaleDateString()}</p>
-				<p class="description">{post.description}</p>
+			<li>
+				<a href={post.slug} class="text-xl">{post.title}</a>
+				<p class="text-sm text-gray-500">{formatDate(post.date)}</p>
+				<p class="text-base text-gray-700">{post.description}</p>
 			</li>
 		{/each}
 	</ul>
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>

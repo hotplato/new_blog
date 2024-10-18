@@ -1,25 +1,25 @@
-<script>
+<script lang="ts">
 	import Header from './Header.svelte';
+	import { ModeWatcher} from "mode-watcher";
 	import '../app.css';
 </script>
 
-<div class="app">
-	<Header />
-
+<div class="min-h-screen bg-white dark:bg-slate-900">
+	<ModeWatcher />
+	<Header></Header>
 	<main>
-		<slot />
+		<slot></slot>
 	</main>
-
 </div>
 
 <style>
-	.app {
+	/* .app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-	}
+	} */
 
-	main {
+	/* main {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -28,6 +28,5 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
-	}
-
+	} */
 </style>
