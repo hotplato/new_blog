@@ -9,7 +9,7 @@
 </svelte:head>
 
 <!-- Posts -->
-<section class="max-w-3xl mx-auto py-8">
+<section class="px-4 sm:px-0 sm:max-w-3xl mx-auto py-8">
 	<ul class="antialiased">
 		{#each data.posts as post}
 			<li class="mb-4">

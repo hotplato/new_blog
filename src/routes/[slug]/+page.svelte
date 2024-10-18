@@ -59,6 +59,6 @@
 		@apply my-2;
 	}
 	:global(.shiki) {
-		@apply rounded-sm p-2 mb-4;
+		@apply rounded-sm p-2 mb-4 overflow-auto;
 	}
 </style>
